@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
+import { Category } from './category.dto';
+import { CategoryService } from './category.service';
 
 @Component({
   selector: 'app-categories',
@@ -18,18 +20,22 @@ export class CategoriesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
-  dataSource: CategoriesDataSource;
+  dataSource!: MatTableDataSource<Category>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name','description'];
 
-  constructor() {
-    this.dataSource = new CategoriesDataSource();
-  }
+  constructor(private categoryService: CategoryService) { }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.categoryService.getAll().subscribe(
+      categories => {
+        this.dataSource = new MatTableDataSource(categories);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.table.dataSource = this.dataSource;
+      }
+    );
+
   }
 }

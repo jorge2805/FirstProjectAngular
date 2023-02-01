@@ -7,7 +7,7 @@ import { MenuItem } from './MenuItem';
   template: `
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let item of menuItems" [href]="item.path">{{item.label}}</a>
+      <a mat-list-item *ngFor="let item of menuItems" [routerLink]="item.path">{{item.label}}</a>
     </mat-nav-list>
   `,
   styles: [
