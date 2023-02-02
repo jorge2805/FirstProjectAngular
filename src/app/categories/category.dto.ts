@@ -3,3 +3,10 @@ export interface Category {
   "description": string,
   "name": string
 }
+
+export interface Category2 {
+  id: string,
+  description: string,
+  name: string
+}
+
