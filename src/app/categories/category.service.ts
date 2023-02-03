@@ -20,7 +20,7 @@ export class CategoryService {
   }
   public save(category: Category): Observable<Category> {
     console.log(category);
-    if (category.id != 0) return this.http.put<Category>(enviroment.api + 'categories/' + category.id, category);
+    if (category.id) return this.http.put<Category>(enviroment.api + 'categories/' + category.id, category);
     return this.http.post<Category>(enviroment.api + 'categories/', category);
   }
   public delete(category: Category) {
