@@ -1,2 +1,4 @@
 C:\Users\jorge.cuevas\source\repos\FirstProjectAngular_WithNet6\FirstProjectAngular_WithNet6\obj\Debug\FirstProjectAngular_WithNet6.esproj.SuggestedBindingRedirects.cache
 C:\Users\jorge.cuevas\source\repos\FirstProjectAngular_WithNet6\FirstProjectAngular_WithNet6\obj\Debug\FirstProjectAngular_WithNet6.esproj.CoreCompileInputs.cache
+C:\Users\klkwey\source\repos\FirstProjectAngular\obj\Debug\FirstProjectAngular_WithNet6.esproj.SuggestedBindingRedirects.cache
+C:\Users\klkwey\source\repos\FirstProjectAngular\obj\Debug\FirstProjectAngular_WithNet6.esproj.CoreCompileInputs.cache

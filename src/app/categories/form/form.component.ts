@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Category, Category2 } from '../category.dto';
+import { Category } from '../category.dto';
 
 @Component({
   selector: 'category-form',
@@ -12,19 +12,19 @@ export class FormComponent {
   @Output() save = new EventEmitter<Category>();
 
   categoryForm = new FormGroup({
-    id: new FormControl(''),
+    id: new FormControl(0),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     description: new FormControl(''),
   });
 
   @Input()
-  set category(category: Category2) {
+  set category(category: Category) {
     this.categoryForm.setValue(category);
   }
 
   onSubmit() {
-    console.log("form submitted", this.categoryForm.value as unknown as Category);
-    this.save.emit(this.categoryForm.value as unknown as Category);
+    console.log("form submitted", this.categoryForm.value as Category);
+    this.save.emit(this.categoryForm.value as Category);
   }
 
   onBack() {

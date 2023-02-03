@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
-import { Category, Category2 } from './category.dto';
+import { Category } from './category.dto';
 import { CategoryService } from './category.service';
 
 @Component({
@@ -19,14 +19,14 @@ import { CategoryService } from './category.service';
 export class CategoriesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
+  @ViewChild(MatTable) table!: MatTable<Category>;
   dataSource!: MatTableDataSource<Category>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name','description','actions'];
 
   showForm: boolean = false;
-  category!: Category2;
+  category!: Category;
 
   constructor(private categoryService: CategoryService) { }
 
@@ -35,6 +35,7 @@ export class CategoriesComponent implements AfterViewInit {
   }
   onNewCategoryClick() {
     this.showForm = true;
+    this.category = { id: 0, name: '', description: '' };
   }
   onBackForm() {
     this.showForm = false;
@@ -60,9 +61,9 @@ export class CategoriesComponent implements AfterViewInit {
   }
 
   onEditCategory(category: Category) {
-    var category2: Category2 = { id: String(category.id), name: category.name, description: category.description }
-    this.category = category2;
-    console.log('edit category', category2);
+    var category: Category = { id: category.id, name: category.name, description: category.description }
+    this.category = category;
+    console.log('edit category', category);
     this.showForm = true;
   }
   onDeleteCategory(category: Category) {
