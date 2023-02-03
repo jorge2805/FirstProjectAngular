@@ -5,6 +5,8 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
 import { Category } from './category.dto';
 import { CategoryService } from './category.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AlertConfirmComponent } from '../alert-confirm/alert-confirm.component';
 
 @Component({
   selector: 'app-categories',
@@ -28,7 +30,7 @@ export class CategoriesComponent implements AfterViewInit {
   showForm: boolean = false;
   category!: Category;
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, public dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
     this.refreshData();
@@ -69,8 +71,18 @@ export class CategoriesComponent implements AfterViewInit {
   onDeleteCategory(category: Category) {
 
     console.log('Delete category', category);
-    this.categoryService.delete(category).subscribe({});
-    this.refreshData();
+    this.categoryService.delete(category).subscribe(() => {
+      this.refreshData();
+    });
+  }
+
+  showConfirmDelete(category: Category) {
+    let resDial = this.dialog.open(AlertConfirmComponent, {
+      width: '250px'
+    });
+    resDial.afterClosed().subscribe((res) => {
+      if (res) this.onDeleteCategory(category);
+    })
   }
 
 }

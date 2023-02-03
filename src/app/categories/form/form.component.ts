@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../category.dto';
 
 @Component({
@@ -11,11 +11,19 @@ export class FormComponent {
   @Output() back = new EventEmitter();
   @Output() save = new EventEmitter<Category>();
 
-  categoryForm = new FormGroup({
-    id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl(''),
-  });
+  //categoryForm = new FormGroup({
+  //  id: new FormControl(0),
+  //  name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  //  description: new FormControl(''),
+  //});
+
+  constructor(private fb: FormBuilder) { }
+
+  categoryForm = this.fb.group({
+    id:[0],
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    description:['']
+  })
 
   @Input()
   set category(category: Category) {

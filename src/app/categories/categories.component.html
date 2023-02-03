@@ -6,6 +6,7 @@
     <mat-card-content *ngIf="!showForm">
 
       <table mat-table class="full-width-table" matSort aria-label="Elements">
+
         <!-- Id Column -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
@@ -27,10 +28,14 @@
         <!-- Description Column -->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-          <td mat-cell *matCellDef="let row">
-            <button mat-raised-button color="secundary" (click)="onEditCategory(row)">Edit</button>
-            <button mat-raised-button color="primary" (click)="onDeleteCategory(row)">Delete</button>
-          </td>
+          <th mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="onEditCategory(row)">
+                  <mat-icon color="secundary">edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="showConfirmDelete(row)">
+                  <mat-icon color="primary">delete</mat-icon>
+              </button>
+          </th>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -26,6 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AlertConfirmComponent } from './alert-confirm/alert-confirm.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MenuComponent,
     CategoriesComponent,
     DashboardComponent,
-    FormComponent
+    FormComponent,
+    AlertConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
