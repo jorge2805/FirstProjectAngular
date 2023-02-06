@@ -10,7 +10,7 @@ import { Category } from '../category.dto';
 export class FormComponent {
   @Output() back = new EventEmitter();
   @Output() save = new EventEmitter<Category>();
-
+  @Input() loading: Boolean = false;
   //categoryForm = new FormGroup({
   //  id: new FormControl(0),
   //  name: new FormControl('', [Validators.required, Validators.minLength(3)]),

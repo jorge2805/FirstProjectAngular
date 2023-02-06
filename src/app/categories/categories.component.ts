@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -18,11 +18,12 @@ import { AlertConfirmComponent } from '../alert-confirm/alert-confirm.component'
     
   `]
 })
-export class CategoriesComponent implements AfterViewInit {
+export class CategoriesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Category>;
   dataSource!: MatTableDataSource<Category>;
+  showLoading: boolean = false;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name','description','actions'];
@@ -32,7 +33,7 @@ export class CategoriesComponent implements AfterViewInit {
 
   constructor(private categoryService: CategoryService, public dialog: MatDialog) { }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.refreshData();
   }
   onNewCategoryClick() {
@@ -45,20 +46,25 @@ export class CategoriesComponent implements AfterViewInit {
   }
 
   refreshData() {
+    this.showLoading = true;
     this.categoryService.getAll().subscribe(
       categories => {
         this.dataSource = new MatTableDataSource(categories);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        this.table.dataSource = this.dataSource;
+        //this.table.dataSource = this.dataSource;
+        this.showLoading = false;
       }
     );
   }
 
   onSave(category: Category) {
+    console.log('estoy onSave');
+    this.showLoading = true;
     this.categoryService.save(category).subscribe((categorySaved) => {
       this.showForm = false;
       this.refreshData();
+      this.showLoading = false;
     })
   }
 

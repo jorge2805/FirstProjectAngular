@@ -27,7 +27,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AlertConfirmComponent } from './alert-confirm/alert-confirm.component';
+import { LoadingBarComponent } from './loading-bar.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { AlertConfirmComponent } from './alert-confirm/alert-confirm.component';
     CategoriesComponent,
     DashboardComponent,
     FormComponent,
-    AlertConfirmComponent
+    AlertConfirmComponent,
+    LoadingBarComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { AlertConfirmComponent } from './alert-confirm/alert-confirm.component';
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
