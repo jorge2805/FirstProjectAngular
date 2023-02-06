@@ -7,6 +7,7 @@ import { Category } from './category.dto';
 import { CategoryService } from './category.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AlertConfirmComponent } from '../alert-confirm/alert-confirm.component';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -45,21 +46,25 @@ export class CategoriesComponent implements OnInit {
     this.refreshData();
   }
 
-  refreshData() {
+  async refreshData() {
     this.showLoading = true;
-    this.categoryService.getAll().subscribe(
-      categories => {
-        this.dataSource = new MatTableDataSource(categories);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        //this.table.dataSource = this.dataSource;
-        this.showLoading = false;
-      }
-    );
+
+    try {
+      let categories: Category[] = await lastValueFrom(
+        this.categoryService.getAll()
+      );
+      this.dataSource = new MatTableDataSource(categories);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      //this.table.dataSource = this.dataSource;
+    } catch (e) {
+      console.log('estoy refreshData', e);
+    } finally {
+      this.showLoading = false;
+    }     
   }
 
   onSave(category: Category) {
-    console.log('estoy onSave');
     this.showLoading = true;
     this.categoryService.save(category).subscribe((categorySaved) => {
       this.showForm = false;
