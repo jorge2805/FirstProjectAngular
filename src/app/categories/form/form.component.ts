@@ -31,7 +31,6 @@ export class FormComponent {
   }
 
   onSubmit() {
-    console.log("form submitted", this.categoryForm.value as Category);
     this.save.emit(this.categoryForm.value as Category);
   }
 

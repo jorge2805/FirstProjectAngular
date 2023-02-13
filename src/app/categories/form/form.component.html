@@ -10,7 +10,7 @@
         <input matInput placeholder="Description" formControlName="description" />
       </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" [disabled]="!categoryForm.valid || loading" type="submit">Save</button>
+    <button mat-raised-button color="primary" [disabled]="!categoryForm.valid || loading" [class.spinner]="loading" type="submit">Save</button>
     <button mat-raised-button color="secundary" (click)="onBack()">Back</button>
   </form>
 </mat-card-content>

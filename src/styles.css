@@ -9,7 +9,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-spinner:before{
+.spinner:before{
     content:'';
     box-sizing: border-box;
     position: absolute;
