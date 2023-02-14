@@ -1,0 +1,6 @@
+<div *ngIf="categoriesObservable |async;else loading">
+  we have {{categories.length}} total categories
+</div>
+<ng-template #loading>
+  Loading...
+</ng-template>

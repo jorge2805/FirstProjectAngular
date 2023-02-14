@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AlertConfirmComponent } from './alert-confirm/alert-confirm.component';
 import { LoadingBarComponent } from './loading-bar.component';
+import { CategoriesLoadingAsyncComponent } from './categories-loading-async/categories-loading-async.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LoadingBarComponent } from './loading-bar.component';
     DashboardComponent,
     FormComponent,
     AlertConfirmComponent,
-    LoadingBarComponent
+    LoadingBarComponent,
+    CategoriesLoadingAsyncComponent
   ],
   imports: [
     BrowserModule,
