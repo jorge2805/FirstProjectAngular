@@ -6,7 +6,7 @@
     <category-form *ngIf="showForm" (back)="onBackForm()" (save)="onSave($event)" [category]="category" [loading]="showLoading"></category-form>
     <mat-card-content *ngIf="!showForm&&!showLoading">
 
-      <table mat-table [dataSource]="dataSource" class="full-width-table" matSort aria-label="Elements">
+      <table mat-table [dataSource]="dataSource" class="full-width-table" matSort aria-label="Elements" fxHide.xs>
 
         <!-- Id Column -->
         <ng-container matColumnDef="id">
@@ -31,18 +31,27 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <th mat-cell *matCellDef="let row">
             <button mat-icon-button (click)="onEditCategory(row)">
-                  <mat-icon color="secundary">edit</mat-icon>
-              </button>
-              <button mat-icon-button (click)="showConfirmDelete(row)">
-                  <mat-icon color="primary">delete</mat-icon>
-              </button>
+              <mat-icon color="secundary">edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="showConfirmDelete(row)">
+              <mat-icon color="primary">delete</mat-icon>
+            </button>
           </th>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-
+      <div fxShow.xs>
+        <mat-action-list>
+            <mat-list-item *ngFor="let item of dataSource.data" (click)="onEditCategory(item)">
+              <h3 matListItemTitle>{{item.name}}</h3>
+              <p matListItemLine>
+                <span>{{item.description}}</span>
+              </p>
+            </mat-list-item>
+        </mat-action-list>
+      </div>
       <mat-paginator #paginator
                      [length]="dataSource?.data?.length"
                      [pageIndex]="0"
