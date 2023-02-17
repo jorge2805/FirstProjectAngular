@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-suppliers',
   template: `
     <mat-card>
-      <mat-card-tittle>Suppliers</mat-card-tittle>
+      <mat-card-title>Suppliers</mat-card-title>
       <router-outlet></router-outlet>
     </mat-card>
   `,

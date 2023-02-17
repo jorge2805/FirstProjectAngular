@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { Supplier } from '../supplier.dto';
 import { SupplierService } from '../supplier.service';
 
@@ -16,6 +16,6 @@ export class SuppliersListComponent implements OnInit {
   constructor(private supplierService: SupplierService) { }
   async ngOnInit() {
     this.supplierObservable = this.supplierService.getAll();
-    this.suppliers = 
+    this.suppliers = await lastValueFrom(this.supplierObservable);
   }
 }

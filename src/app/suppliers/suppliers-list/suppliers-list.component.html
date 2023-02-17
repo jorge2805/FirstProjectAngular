@@ -2,6 +2,16 @@
   <mat-card-subtitle>Listing suppliers</mat-card-subtitle>
   <mat-card-content *ngIf="supplierObservable|async; else loading">
     we found {{suppliers.length}} suppliers
+    <div fxLayout="row wrap" fxLayoutGab="10px grid">
+      <div *ngFor="let item of suppliers">
+        <mat-card class="blueOver" [routerLink]="['/suppliers/show', item.id]">
+          <mat-card-content>
+            <b>{{item.contactName}}</b><br />
+            {{item.companyName}}
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
   </mat-card-content>
   <ng-template #loading>
     <app-loading-bar [visible]="true"></app-loading-bar>
