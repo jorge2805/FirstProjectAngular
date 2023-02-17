@@ -1,0 +1,12 @@
+<div>
+  <mat-card-subtitle>Listing suppliers</mat-card-subtitle>
+  <mat-card-content *ngIf="supplierObservable|async; else loading">
+    we found {{suppliers.length}} suppliers
+  </mat-card-content>
+  <ng-template #loading>
+    <app-loading-bar [visible]="true"></app-loading-bar>
+  </ng-template>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [routerLink]="['/suppliers/new']">New</button>
+  </mat-card-actions>
+</div>
